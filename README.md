@@ -58,6 +58,7 @@ python app.py
 
 Откройте http://127.0.0.1:5000 в браузере
 
+```bash
 
 ![image](https://github.com/user-attachments/assets/a0f32f58-e5e1-4315-a8a5-9b772af2224f)
 
