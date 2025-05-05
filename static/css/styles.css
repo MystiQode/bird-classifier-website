@@ -1,0 +1,299 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: url('/static/images/andrew-pons-lylCw4zcA7I-unsplash.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #f8f9fa;
+    text-shadow: 1px 1px 2px #000;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 200px;
+    transition: transform 0.3s;
+    z-index: 1;
+}
+
+header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-size: 1.8rem;
+    color: #ffd700;
+    text-shadow: 1px 1px 2px #000;
+    z-index: 0;
+    white-space: nowrap;
+}
+
+main {
+    flex: 1;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.upload-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#uploadForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+input[type="file"] {
+    padding: 10px;
+    background: #fff;
+    border-radius: 8px;
+    color: #000;
+    font-weight: 500;
+    transition: all 0.3s;
+    width: 100%;
+    max-width: 400px;
+}
+
+input[type="file"]:hover {
+    background: #f1f1f1;
+}
+
+button {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 86, 179, 0.4);
+    width: 100%;
+    max-width: 400px;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #0056b3, #003366);
+    transform: scale(1.05);
+}
+
+.preview-container {
+    margin-top: 20px;
+    position: relative;
+    min-height: 250px;
+}
+
+#preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+    display: none;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 8px;
+    background: linear-gradient(to right, #28a745, #218838);
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+    margin-top: 15px;
+}
+
+.result-box {
+    margin-top: 25px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #00ffcc;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.result-box p {
+    margin: 10px 0;
+}
+
+.result-box .error {
+    color: #ff4444;
+}
+
+.examples {
+    margin-top: 50px;
+}
+
+.examples h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #ffd700;
+    text-shadow: 1px 1px 3px #000;
+}
+
+.example-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.example-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    border: 2px solid transparent;
+}
+
+.example-img:hover {
+    transform: scale(1.05);
+    border: 2px solid #00ffcc;
+    box-shadow: 0 6px 20px rgba(0, 255, 204, 0.5);
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: max-content;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 12px;
+    position: absolute;
+    z-index: 10;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    color: #ccc;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    .example-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+
+    .upload-section {
+        padding: 20px;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    animation: zoom 0.3s ease-in-out;
+}
+
+@keyframes zoom {
+    from { transform: scale(0.7); }
+    to { transform: scale(1); }
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+    transition: transform 0.2s;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: #ff4444;
+    text-decoration: none;
+    cursor: pointer;
+    transform: rotate(90deg);
+}

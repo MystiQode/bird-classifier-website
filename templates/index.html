@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Классификация птиц</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Логотип" class="logo">
+        <h1>Классификация видов птиц</h1>
+    </header>
+
+    <main>
+        <section class="upload-section">
+            <div class="upload-box">
+                <form id="uploadForm" method="POST" enctype="multipart/form-data">
+                    <input type="file" id="fileInput" name="file" accept="image/*" required>
+                    <button type="submit">Загрузить изображение</button>
+                </form>
+                <div id="previewContainer" class="preview-container">
+                    <img id="preview" src="" alt="Предпросмотр" style="display:none;">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+                <div id="result" class="result-box"></div>
+            </div>
+        </section>
+
+        <section class="examples">
+            <h2>Примеры изображений</h2>
+            <div class="example-gallery">
+                {% for example, desc in examples_with_desc %}
+                    <div class="tooltip-container">
+                        <img
+                            src="{{ url_for('static', filename='images/examples/' + example) }}"
+                            alt="{{ example.split('.')[0].replace('_', ' ') }}"
+                            class="example-img"
+                            data-description="{{ desc }}"
+                        >
+                        <span class="tooltip-text">{{ example.split('.')[0].replace('_', ' ') }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 AviClassifler. Все права защищены.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+    <div id="modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+</body>
+</html>
